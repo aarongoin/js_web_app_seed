@@ -1,4 +1,6 @@
 private/
+db/data/
+*.bundle.*
 
 # VSCode files
 .code-workspace
