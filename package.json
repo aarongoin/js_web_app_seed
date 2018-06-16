@@ -11,7 +11,8 @@
     "dev": "webpack -d --watch",
     "recreate_db": "rm -rf ./db/data ; initdb -D ./db/data && npm run postgres",
     "postgres": "postgres -D ./db/data",
-    "setup_db": "createdb app_db && psql -f ./db/init.sql app_db"
+    "setup_db": "createdb app_db && psql -f ./db/init.sql app_db",
+    "set_admin": "node ./db/admin.js $*"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

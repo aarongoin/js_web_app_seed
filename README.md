@@ -1,5 +1,5 @@
 # js_web_app_seed
-This is a scaffold for an isomorphic ReactJS single-page web app with an ExpressJS backend and a PostgreSQL database.
+This is a scaffold for an isomorphic ReactJS single-page web app with an ExpressJS backend, a PostgreSQL database, and session-based authentication.
 
 ## Technology Stack
 
@@ -21,8 +21,9 @@ The front-end uses Babel to enable development with ES6+ features, and Flow for 
 3. In the same terminal, run `npm recreate_db` to wipe out any pre-existing db and recreate a new db.
 4. Then run `npm run postgres` to start the postgres db server.
 5. Open a new terminal window and run `npm run setup_db` to setup the User and Session databases.
-6. Run `npm run dev` to start the Webpack watcher which will automatically rebundle anytime there's changes.
-7. In a third terminal window run `npm run start` to start the development server, which will reboot anytime you make changes to the project.
+6. Create an admin account in the database by running `npm run set_admin <password>` with your chosen password.
+7. Run `npm run dev` to start the Webpack watcher which will automatically rebundle anytime there's changes.
+8. In a third terminal window run `npm run start` to start the development server, which will reboot anytime you make changes to the project.
 
 ## NPM Commands
 
@@ -41,6 +42,7 @@ The front-end uses Babel to enable development with ES6+ features, and Flow for 
 `npm run recreate_db` - Execute this command to build the project for production.
 `npm run postgres` - Execute this command to continually rebuild project for development.
 `npm run setup_db` - Execute this command to build the project for production.
+`npm run set_admin <password>` - Execute this command to create or update admin account in the database with username: 'admin' and password: <password>.
 
 ## Resetting the Database
 

@@ -1,21 +1,13 @@
-const pg = require('pg')
-const config = require('../config')
-const winston = require('winston')
+const pg = require('pg');
+const config = require('../config');
+const winston = require('winston');
 
-const dbConfig = {
-	user: config.db.user,
-	password: config.db.password,
-	database: config.db.database,
-	host: config.db.host,
-	port: config.db.port,
-	max: config.db.max,
-	idleTimeoutMillis: config.db.idleTimeoutMillis,
-}
+const dbConfig = { ...config.db };
 
-const pool = new pg.Pool(dbConfig)
+const pool = new pg.Pool(dbConfig);
 pool.on('error', function (err) {
 	winston.error('idle client error', err.message, err.stack)
-})
+});
 
 module.exports = {
 	pool,
@@ -39,7 +31,7 @@ module.exports = {
 		pool.query('INSERT INTO users(username, password, salt, type) VALUES($1, $2, $3, $4)', [email, password, salt, type])
 	),
 	setUserPassword: (id, password, salt) =>  (
-		pool.query('UPDATE users SET password=$2, salt="$3 WHERE id=$1', [id, password, salt])
+		pool.query('UPDATE users SET password=$2, salt=$3 WHERE id=$1', [id, password, salt])
 	),
 	deleteUser: id => (
 		pool.query('DELETE FROM users WHERE id=$1', [id])

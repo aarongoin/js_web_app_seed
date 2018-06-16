@@ -55,7 +55,7 @@ class Login extends React.Component<Props, State> {
 
     render() {
         return (
-            <Container key="login_route" className="flex_center">
+            <Container key="login_route" className="flex_center" style={{height: '100%'}}>
                 <Form onSubmit={this.onSubmit} style={{ width: '30rem', backgroundColor: '#fff', padding: '2rem' }}>
                     <legend>Login</legend>
                     <Input

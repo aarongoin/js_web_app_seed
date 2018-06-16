@@ -48,7 +48,7 @@ const App = connect(
     })
 )(Main);
 
-const AppWithStore = (store : Object) : React.Element<Provider> => (
+const AppWithStore = (store : Object) : React.Element => (
     <Provider store={store}>
         <App />
     </Provider>

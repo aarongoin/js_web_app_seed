@@ -22,6 +22,7 @@ const renderStatic = url => `<html>
 	<head>
 		<title>Hello World</title>
 		<link href="//cdn.muicss.com/mui-0.9.39/css/mui.min.css" rel="stylesheet" type="text/css" media="screen" />
+		<link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
 		<link href="./css/style.css" rel="stylesheet"></link>
 	</head>
 	<body>
@@ -112,7 +113,7 @@ module.exports = (app, passport, db, auth) => {
 					bcrypt.hash(password, salt, (err, hash) => {
 						if (!err) 
 							// create user in db
-							db.createUser(username, hash, salt, 'free')
+							db.createUser(username, hash, salt, 'user')
 								.then(result => db.getUserByName(username))
 								.then(user => user !== null ? res.status(201).json(user) : res.status(409))
 								.catch(err => console.error('Oh noes! ', err) || res.status(500));

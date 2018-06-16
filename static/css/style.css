@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #212121;
-    color: #000;
+    color: #fff;
     font-family: 'Arial', sans-serif;
 }
 
@@ -17,21 +17,18 @@ body {
 }
 
 .flex_center {
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .flex_left {
-    height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
 .flex_right {
-    height: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
