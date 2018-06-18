@@ -61,5 +61,4 @@ Some things I'd still like to do:
 
 - Extend flow coverage and write a small test suite.
 - Wrap back-end in docker container, and use nginx for reverse-proxy.
-- Create a better CSS build/workflow by including Sass in build step, setup Muicss for customization, and using Autoprefixer.
 - Add nice things like hot-reloading

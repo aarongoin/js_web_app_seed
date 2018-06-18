@@ -1,0 +1,50 @@
+// import MUI colors
+@import "../../node_modules/muicss/lib/sass/mui-colors.scss";
+
+// customize MUI variables HERE
+$mui-primary-color:       mui-color('purple', '500');
+$mui-primary-color-dark:  mui-color('purple', '700');
+$mui-primary-color-light: mui-color('purple', '100');
+
+$mui-accent-color:        mui-color('green', 'A200');
+$mui-accent-color-dark:   mui-color('green', 'A100');
+$mui-accent-color-light:  mui-color('green', 'A400');
+
+// import MUI SASS
+@import "../../node_modules/muicss/lib/sass/mui.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #212121;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+#mountPoint {
+    margin: 0;
+    padding: 0;
+}
+
+.flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex_right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

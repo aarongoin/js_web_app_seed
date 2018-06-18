@@ -2,7 +2,7 @@ const pg = require('pg');
 const config = require('../config');
 const winston = require('winston');
 
-const dbConfig = { ...config.db };
+const dbConfig = Object.assign({}, config.db);
 
 const pool = new pg.Pool(dbConfig);
 pool.on('error', function (err) {

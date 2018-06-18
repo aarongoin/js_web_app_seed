@@ -21,9 +21,8 @@ const store = createStore(
 const renderStatic = url => `<html>
 	<head>
 		<title>Hello World</title>
-		<link href="//cdn.muicss.com/mui-0.9.39/css/mui.min.css" rel="stylesheet" type="text/css" media="screen" />
 		<link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-		<link href="./css/style.css" rel="stylesheet"></link>
+		<link href="./css/style.bundle.css" rel="stylesheet"></link>
 	</head>
 	<body>
 		<div id="mountPoint">${

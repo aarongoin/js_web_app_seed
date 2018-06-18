@@ -2,6 +2,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 
+import css from './sass/main.scss';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
