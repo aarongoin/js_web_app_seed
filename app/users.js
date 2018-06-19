@@ -29,7 +29,7 @@ module.exports = (app, passport, db, auth) => {
 		(req, res) => {
 			const { user } = req;
 
-			db.getUser().then(result => {
+			db.getUser(user.id).then(result => {
 				if (result !== null)
 					res.status(200).json(result);
 				else // user not in db
