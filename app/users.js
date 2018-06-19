@@ -1,51 +1,8 @@
 const bcrypt = require('bcrypt');
 
-const React = require('react');
-const { renderToString } = require('react-dom/server');
-
-const { StaticRouter, Switch, Route } = require('react-router-dom');
-const { Provider } = require('react-redux');
-const { createStore, combineReducers } =  require('redux');
-
 require("babel-register");
 require("babel-polyfill");
-const routes = require('../client/routes.js').default;
-const { AccountReducer } = require('../client/reducers/account');
-
-const store = createStore(
-	combineReducers({
-		account: AccountReducer
-	}),
-);
-
-const renderStatic = url => `<html>
-	<head>
-		<title>Hello World</title>
-		<link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-		<link href="./css/style.bundle.css" rel="stylesheet"></link>
-	</head>
-	<body>
-		<div id="mountPoint">${
-			renderToString(
-				React.createElement(Provider, { store },
-					React.createElement(StaticRouter, { location: url },
-						React.createElement(Switch, null,
-							routes.map(
-								([path, component, exact], i) => React.createElement(Route, {
-									key: path,
-									path,
-									component,
-									exact: (exact === 'exact')
-								})
-							)
-						)
-					)
-				)
-			)
-		}</div>
-		<script type="text/javascript" src="./js/app.bundle.js"></script>
-	</body>
-</html>`;
+const renderStatic = require('../client/renderStatic').default;
 
 module.exports = (app, passport, db, auth) => {
 
@@ -76,9 +33,9 @@ module.exports = (app, passport, db, auth) => {
 				if (result !== null)
 					res.status(200).json(result);
 				else // user not in db
-					res.redirect('/join');
+					res.sendStatus(404);
 			})
-			.catch(err => console.error('Oh noes! ', err) || res.status(500));
+			.catch(err => console.error('Oh noes! ', err) || res.sendStatus(500));
 		}
 	);
 
@@ -99,7 +56,7 @@ module.exports = (app, passport, db, auth) => {
 			// check if username is available in db
 			db.doesUserExist()
 				.then(result => res.status(200).json({valid: !result}))
-				.catch(err => console.error('Oh noes! ', err) || res.status(500));			
+				.catch(err => console.error('Oh noes! ', err) || res.sendStatus(500));			
 		}
 	);
 
@@ -114,16 +71,16 @@ module.exports = (app, passport, db, auth) => {
 							// create user in db
 							db.createUser(username, hash, salt, 'user')
 								.then(result => db.getUserByName(username))
-								.then(user => user !== null ? res.status(201).json(user) : res.status(409))
-								.catch(err => console.error('Oh noes! ', err) || res.status(500));
+								.then(user => user !== null ? res.status(201).json(user) : res.sendStatus(409))
+								.catch(err => console.error('Oh noes! ', err) || res.sendStatus(500));
 						else {
 							console.error(err);
-							res.status(500);
+							res.sendStatus(500);
 						}
 					});
 				} else {
 					console.error(err);
-					res.status(500);
+					res.sendStatus(500);
 				}
 			});
 		}
@@ -141,16 +98,16 @@ module.exports = (app, passport, db, auth) => {
 						if (!err)
 							// update user password in db
 							db.setUserPassword(id, hash, salt)
-								.then(result => res.status(200))
-								.catch(err => console.error('Oh noes! ', err) || res.status(500));
+								.then(result => res.sendStatus(200))
+								.catch(err => console.error('Oh noes! ', err) || res.sendStatus(500));
 						else {
 							console.error(err);
-							res.status(500);
+							res.sendStatus(500);
 						}
 					});
 				} else {
 					console.error(err);
-					res.status(500);
+					res.sendStatus(500);
 				}
 			});
 		}
@@ -162,8 +119,8 @@ module.exports = (app, passport, db, auth) => {
 			const { id } = req.user;
 			
 			db.deleteUser(id)
-				.then(result => res.status(200))
-				.catch(err => console.error('Oh noes! ', err) && res.status(500));
+				.then(result => res.sendStatus(200))
+				.catch(err => console.error('Oh noes! ', err) && res.sendStatus(500));
 		}
 	)
 }
