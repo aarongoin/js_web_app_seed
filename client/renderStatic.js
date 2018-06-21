@@ -19,7 +19,6 @@ const renderStatic = (url : string) : string => `
 <html>
     <head>
         <title>Hello World</title>
-        <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet"></link>
         <link href="./css/style.bundle.css" rel="stylesheet"></link>
     </head>
     <body>
